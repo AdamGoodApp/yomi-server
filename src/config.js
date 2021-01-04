@@ -41,7 +41,7 @@ const config = {
   test: { },
   development: {
     mongo: {
-      uri: 'mongodb://localhost/yomi-server-dev',
+      uri: 'mongodb+srv://adamgoodapp:qAlmcXdclkqJZ4na@yomi.6piok.mongodb.net/development?retryWrites=true&w=majority',
       options: {
         debug: true
       }
