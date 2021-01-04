@@ -51,7 +51,7 @@ const config = {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb://localhost/yomi-server'
+      uri: process.env.MONGODB_URI || 'mongodb+srv://adamgoodapp:qAlmcXdclkqJZ4na@yomi.6piok.mongodb.net/yomi?retryWrites=true&w=majority'
     }
   }
 }
