@@ -18,7 +18,6 @@ const router = new Router()
  */
 router.get('/',
   master(),
-  query(),
   index)
 
 /**
@@ -38,7 +37,7 @@ router.get('/:id',
 
 /**
  * @api {get} /manga/top24 Retrieve lastest top 24h mangas
- * @apiName RetrieveTop24Mangas
+ * @apiName RetrieveCTop24Mangas
  * @apiGroup Manga
  * @apiPermission master
  * @apiParam {String} access_token master access token.
