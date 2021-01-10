@@ -8,6 +8,9 @@ export const index = ({ query: { list } }, res, next) => {
     case 'top24':
       get24(res)
       break
+    case 'top7d':
+      get7d(res)
+      break
   }
 }
 
@@ -23,4 +26,12 @@ const get24 = async (res) => {
   const manga = top24h.map((x) => { return { id: x.id, title: x.title, cover: `https://mangadex.org/images/manga/${x.id}.jpg` } })
 
   return res.status(200).json({ top24h: manga })
+}
+
+const get7d = async (res) => {
+  const home = new api.Home()
+  const { top7d } = await home.fill()
+  const manga = top7d.map((x) => { return { id: x.id, title: x.title, cover: `https://mangadex.org/images/manga/${x.id}.jpg` } })
+
+  return res.status(200).json({ top7d: manga })
 }
