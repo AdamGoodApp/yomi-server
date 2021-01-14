@@ -1,37 +1,15 @@
-const api = require('mangadex-full-api')
+const { Mangadex } = require('mangadex-api')
 
-// export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-//   res.status(200).json([{ test: 'comon' }])
-
-export const index = ({ query: { list } }, res, next) => {
-  switch (list) {
-    case 'top24':
-      get24(res)
-      break
-    case 'top7d':
-      get7d(res)
-      break
-  }
-}
-
-export const show = ({ params }, res, next) =>
-  res.status(200).json({})
-
-export const top24 = ({ querymen: { query, select, cursor } }, res, next) =>
+export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   res.status(200).json([{ test: 'comon' }])
 
-const get24 = async (res) => {
-  const home = new api.Home()
-  const { top24h } = await home.fill()
-  const manga = top24h.map((x) => { return { id: x.id, title: x.title, cover: `https://mangadex.org/images/manga/${x.id}.jpg` } })
+export const show = async ({ params }, res, next) => {
+  const { id } = params
+  const client = new Mangadex()
 
-  return res.status(200).json({ top24h: manga })
-}
+  await client.agent.login('uberpoopoo', 'rarro5-zocmuZ-zizkiw', false)
 
-const get7d = async (res) => {
-  const home = new api.Home()
-  const { top7d } = await home.fill()
-  const manga = top7d.map((x) => { return { id: x.id, title: x.title, cover: `https://mangadex.org/images/manga/${x.id}.jpg` } })
+  const result = await client.search({ title: id, with_hentai: true })
 
-  return res.status(200).json({ top7d: manga })
+  return res.status(200).json({ manga: result })
 }

@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { master } from '../../services/passport'
-import { index, show, top24 } from './controller'
+import { index, show } from './controller'
 
 const router = new Router()
 
@@ -18,6 +18,7 @@ const router = new Router()
  */
 router.get('/',
   master(),
+  query(),
   index)
 
 /**
@@ -34,17 +35,5 @@ router.get('/',
 router.get('/:id',
   master(),
   show)
-
-/**
- * @api {get} /manga/top24 Retrieve lastest top 24h mangas
- * @apiName RetrieveCTop24Mangas
- * @apiGroup Manga
- * @apiPermission master
- * @apiParam {String} access_token master access token.
- * @apiSuccess {Object[]} mangas List of top24 mangas.
- */
-router.get('/top24',
-  master(),
-  top24)
 
 export default router
