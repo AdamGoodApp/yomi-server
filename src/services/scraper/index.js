@@ -8,7 +8,7 @@ const search = async (query) => {
 
 // Takes a searched title href and returns arrays of available chapters
 const getChapters = async (titleUrl) => {
-  const { titles, hrefs } = await xray(titleUrl, '.row-content-chapter', { titles: ['a @title'], hrefs: ['a @href'] })
+  const { titles, hrefs } = await xray(titleUrl, '.row-content-chapter', { titles: ['a'], hrefs: ['a @href'] })
 
   return titles.map((title, index) => {
     return { title: title, href: hrefs[index] }
