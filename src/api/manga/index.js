@@ -18,7 +18,6 @@ const router = new Router()
  */
 router.get('/',
   master(),
-  query(),
   index)
 
 /**

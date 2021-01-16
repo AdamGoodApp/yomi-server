@@ -1,7 +1,11 @@
-import { getMangakakalotChapters } from '../../services/scraper/index'
+import { getMangakakalotChapters, getPages } from '../../services/scraper/index'
 
-export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-  res.status(200).json([{ test: 'comon' }])
+export const index = async (req, res, next) => {
+  const { manga } = req.query
+  const pages = await getPages(manga)
+
+  return res.status(200).json({ result: pages })
+}
 
 export const show = async ({ params }, res, next) => {
   const { id } = params

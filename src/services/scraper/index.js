@@ -25,6 +25,12 @@ const getChapters = async (titleUrl) => {
   })
 }
 
+export const getPages = async (manga) => {
+  const pages = await xray(manga, '.container-chapter-reader', ['img @src'])
+
+  return pages
+}
+
 export const getMangakakalotChapters = async (title) => {
   const manga = await search(title)
   const chapters = await getChapters(manga)
