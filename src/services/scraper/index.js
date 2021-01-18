@@ -31,7 +31,7 @@ export const getPages = async (manga) => {
   return pages
 }
 
-export const getMangakakalotChapters = async (title) => {
+export const getManganeloChapters = async (title) => {
   const manga = await search(title)
   const chapters = await getChapters(manga)
 
