@@ -41,7 +41,7 @@ const userSchema = new Schema({
     trim: true
   },
   bookmark: {
-    type: { mangaID: { type: String }, chapterID: { type: String } }
+    type: { mangaID: { type: Number }, chapterID: { type: String } }
   }
 }, {
   timestamps: true
