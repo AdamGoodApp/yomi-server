@@ -39,6 +39,9 @@ const userSchema = new Schema({
   picture: {
     type: String,
     trim: true
+  },
+  bookmark: {
+    type: { mangaID: { type: String }, chapterID: { type: String } }
   }
 }, {
   timestamps: true
@@ -72,7 +75,7 @@ userSchema.pre('save', function (next) {
 userSchema.methods = {
   view (full) {
     const view = {}
-    let fields = ['id', 'name', 'picture']
+    let fields = ['id', 'name', 'picture', 'bookmark']
 
     if (full) {
       fields = [...fields, 'email', 'createdAt']
@@ -92,7 +95,7 @@ userSchema.methods = {
 userSchema.statics = {
   roles,
 
-  createFromService ({ service, id, email, name, picture }) {
+  createFromService ({ service, id, email, name, picture, bookmark }) {
     return this.findOne({ $or: [{ [`services.${service}`]: id }, { email }] }).then((user) => {
       if (user) {
         user.services[service] = id
