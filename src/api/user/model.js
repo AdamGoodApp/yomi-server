@@ -42,7 +42,8 @@ const userSchema = new Schema({
   },
   bookmark: {
     type: { mangaID: { type: Number }, chapterID: { type: String } }
-  }
+  },
+  favourites: [Number]
 }, {
   timestamps: true
 })
@@ -75,7 +76,7 @@ userSchema.pre('save', function (next) {
 userSchema.methods = {
   view (full) {
     const view = {}
-    let fields = ['id', 'name', 'picture', 'bookmark']
+    let fields = ['id', 'name', 'picture', 'bookmark', 'favourites']
 
     if (full) {
       fields = [...fields, 'email', 'createdAt']
