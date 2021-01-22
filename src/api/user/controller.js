@@ -59,16 +59,7 @@ export const update = ({ bodymen: { body }, params, user }, res, next) =>
       }
       return result
     })
-    .then((user) => {
-      if (user && body.favourites) {
-        body.favourites = [...user.favourites, body.favourites]
-        return Object.assign(user, body).save()
-      } else if (user) {
-        return Object.assign(user, body).save()
-      } else {
-        return null
-      }
-    })
+    .then((user) => Object.assign(user, body).save())
     .then((user) => user ? user.view(true) : null)
     .then(success(res))
     .catch(next)
