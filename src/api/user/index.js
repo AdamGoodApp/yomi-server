@@ -7,7 +7,7 @@ import { schema } from './model'
 export User, { schema } from './model'
 
 const router = new Router()
-const { email, password, name, picture, role, bookmark, favourites } = schema.tree
+const { email, password, name, picture, role, bookmarks, favourites } = schema.tree
 
 /**
  * @api {get} /users Retrieve users
@@ -77,7 +77,8 @@ router.post('/',
  * @apiParam {String} access_token User access_token.
  * @apiParam {String} [name] User's name.
  * @apiParam {String} [picture] User's picture.
- * @apiParam {String} [bookmark] User's bookmark.
+ * @apiParam {String} [bookmark] User's bookmarks.
+ * @apiParam {String} [favourite] User's favourites.
  * @apiSuccess {Object} user User's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 Current user or admin access only.
@@ -85,7 +86,7 @@ router.post('/',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ name, picture, bookmark, favourites }),
+  body({ name, picture, bookmarks, favourites }),
   update)
 
 /**

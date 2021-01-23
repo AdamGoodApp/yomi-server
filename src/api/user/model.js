@@ -40,8 +40,8 @@ const userSchema = new Schema({
     type: String,
     trim: true
   },
-  bookmark: {
-    type: { mangaID: { type: Number }, chapterID: { type: String } }
+  bookmarks: {
+    type: [{ mangaID: { type: Number }, chapterID: { type: String } }]
   },
   favourites: [Number]
 }, {
@@ -76,7 +76,7 @@ userSchema.pre('save', function (next) {
 userSchema.methods = {
   view (full) {
     const view = {}
-    let fields = ['id', 'name', 'picture', 'bookmark', 'favourites']
+    let fields = ['id', 'name', 'picture']
 
     if (full) {
       fields = [...fields, 'email', 'createdAt']
