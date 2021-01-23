@@ -7,6 +7,11 @@ import { env } from '../../config'
 
 const roles = ['user', 'admin']
 
+const bookmarkSchema = new mongoose.Schema({
+  manga: Number,
+  chapter: String
+})
+
 const userSchema = new Schema({
   email: {
     type: String,
@@ -40,7 +45,7 @@ const userSchema = new Schema({
     type: String,
     trim: true
   },
-  bookmarks: { type: Array, default: [] },
+  bookmarks: Schema.Types.Mixed,
   favourites: { type: [Number] }
 }, {
   timestamps: true
