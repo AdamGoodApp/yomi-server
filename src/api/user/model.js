@@ -40,7 +40,7 @@ const userSchema = new Schema({
     type: String,
     trim: true
   },
-  bookmarks: [{ manga: Number, chapter: String }],
+  bookmarks: { type: Array, default: [] },
   favourites: { type: [Number] }
 }, {
   timestamps: true
